@@ -20,7 +20,7 @@ output "gamelift_builds_region" {
 }
 output "gamelift_builds_storage_location" {
   description = "Map of storage_location values across all gamelift_builds, keyed the same as var.gamelift_builds"
-  value       = { for k, v in aws_gamelift_build.gamelift_builds : k => v.storage_location if v.storage_location != null && length(v.storage_location) > 0 }
+  value       = { for k, v in aws_gamelift_build.gamelift_builds : k => one(v.storage_location) if v.storage_location != null && length(v.storage_location) > 0 }
 }
 output "gamelift_builds_tags" {
   description = "Map of tags values across all gamelift_builds, keyed the same as var.gamelift_builds"
